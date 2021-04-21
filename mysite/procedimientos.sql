@@ -1,3 +1,20 @@
+---------------pregunta 1 ----------
+-----QUERRY que necesita hacer:
+---(04 ES EL MES ; 2021 ES EL AñO)
+select EXTRACT(year from fecha_reproduccion ) as year, EXTRACT(month from fecha_reproduccion ) as month,  g.nombre as genre, count(*) as cantidad_reproducciones from (
+	select * from canciones_escuchar e
+	join canciones_album a
+	on e.id_cancion_id = a.id ) sub1
+join canciones_genero g 
+on  sub1.id_genero_id = g.id
+where  EXTRACT(month from fecha_reproduccion ) = 04
+and EXTRACT(year from fecha_reproduccion ) = 2021
+group by month, year, genre
+
+
+
+-----------------------
+----Procedimiento :
 create or replace function trends (mymonth varchar , myyear int)
 	returns table 
 	declare loweredmonth varchar
@@ -37,3 +54,63 @@ create or replace function trends (mymonth varchar , myyear int)
 
 
 
+
+
+---------------------
+---PREGUNTA 2
+
+-----QUERY QUE NECESITA HACER:
+--(01 ES EL ID DEL ALBUM ; 4 ES EL UMBRAL DE REPRODUCCIONES MINIMO)
+
+
+
+select u.username as artista, a2.titulo as nombre_album, c.nombre as nombre_cancion, sub3.reproducciones from (
+	select id_cancion_id , count (*) as reproducciones from(
+		select * from (
+			select * from canciones_escuchar e
+			join canciones_cancion c
+			on e.id_cancion_id = c.id 
+			) sub1
+		join canciones_album a
+		on sub1.id_album_id = a.id
+		where sub1.id_album_id = '01'
+	
+	) sub2
+	group by id_cancion_id
+) sub3
+join canciones_cancion c
+on c.id = sub3.id_cancion_id
+join canciones_album a2
+on a2.id = c.id_album_id
+join auth_user u
+on u.id = a2.username_usuario_id
+where reproducciones > 4
+
+
+
+
+
+
+---- PROCEDIMIENTO
+
+
+
+
+
+
+
+---------------
+
+----PREGUNTA 3
+
+----QUERY
+
+
+
+
+
+
+
+
+
+-----PROCEDIMIENTO
