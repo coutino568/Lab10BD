@@ -105,6 +105,32 @@ where reproducciones > 4
 
 ----QUERY
 
+--- pt1  determina el nuemero de reproducciones que constituyen cierta posicion en el ranking
+select distinct differentsongs from (
+	select distinct u.username, count (*) as differentsongs from (
+		select username_usuario_id as user , id_cancion_id as song, count (*)  from canciones_escuchar 
+		group by id_cancion_id , username_usuario_id
+		order by user ) sub1 
+	join auth_user u
+	on u.id = sub1.user
+	group by u.username
+) sub2
+order by differentsongs desc
+offset 2
+limit 1
+
+----pt 2  retorna los usuarios con una cantidad especifica de reproduccione
+select * from (
+	select distinct u.username, count (*) as differentsongs from (
+		select username_usuario_id as user , id_cancion_id as song, count (*)  from canciones_escuchar 
+		group by id_cancion_id , username_usuario_id
+		order by user ) sub1 
+	join auth_user u
+	on u.id = sub1.user
+	group by u.username
+) sub2
+where differentsongs = 3
+order by differentsongs desc
 
 
 
