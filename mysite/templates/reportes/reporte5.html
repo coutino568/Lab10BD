@@ -1,0 +1,16 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../static/reportes/generalstyles.css" />
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<h1> Reporte 5 : Generos mas populares </h1>
+
+<ul class="container">
+{% for genero in historial %}
+
+	<li class="element">
+		El genero <span>{{ genero.nombre}}</span> ha sido escuchado: <span>{{ genero.reproducciones}}</span> veces
+	</li>
+{% endfor %}
+</ul>
+{% endblock content%}

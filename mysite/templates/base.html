@@ -1,0 +1,36 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="../../../static/base/styles.css" />
+</head>
+
+<ul class="navbar-container">
+
+{% if user.is_authenticated %}
+<h1 class="supertitle">Bienvenido, {{user}}/{{user.atributos_extra.nombre_artistico}}</h1>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'usuarios:perfil' %}">Perfil</a></li>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'usuarios:logout' %}">Logout</a></li>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'canciones:list_cancion' %}">Ver canciones</a></li>
+{% endif %}
+{% if user.is_authenticated == False %}
+<h1 class="supertitle">Bienvenido al Proyecto I Bases de Datos</h1>
+{% endif %}
+
+{% if user.atributos_extra.nombre_artistico %}
+<li class="navbar-item"><a class="navbar-a" href="{% url 'canciones:add_cancion'%}">Agregar Cancion</a></li>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'canciones:add_album'%}">Agregar Album</a></li>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'canciones:add_genero'%}">Agregar Genero</a></li>
+{% endif %}
+
+{% if user.suscripcion.activa %}
+<li class="navbar-item"><a class="navbar-a" href="{% url 'playlists:list_playlist'%}">Lista de Playlists</a></li>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'playlists:add_playlist'%}">Agregar Playlist</a></li>
+<li class="navbar-item"><a class="navbar-a" href="{% url 'playlists:add_esta_en'%}">Agregar Canciones a Playlist</a></li>
+{% endif %}
+
+{% if user.is_staff %}
+<li class="navbar-item"><a class="navbar-a" href="{% url 'admin:index' %}">Configuracion Admin</a></li>
+<li class="navbar-item"> <a class="navbar-a" href="{% url 'reportes:reportes' %}">Reportes Admin</a> </li>
+{% endif %}
+</ul>
+{% block content%}
+
+{% endblock content %}

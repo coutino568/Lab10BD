@@ -1,0 +1,33 @@
+.supertitle { color: #fff; background-color: #333; font-family: 'Raleway',sans-serif; font-size: 30px; font-weight: 800; line-height: 35px; text-align: center; text-transform: uppercase; }
+
+.navbar-container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+.navbar-item {
+  float: left;
+}
+
+.navbar-item .navbar-a {
+  font-family: 'Raleway',sans-serif;
+  font-weight: 400;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navbar-item .navbar-a:hover {
+  background-color: #111;
+}
+
+body {
+  background-color:#ffa500  ;
+}

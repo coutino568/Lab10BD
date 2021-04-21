@@ -1,0 +1,16 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../static/reportes/generalstyles.css" />
+</head>
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> Reporte 1 : Álbumes más recientes de la última semana </h1>
+
+<ul class="container">
+{% for album in historial %}
+<li class="element">
+	El album <span>{{ album.titulo}}</span> ha sido publicado esta semana por: <span>{{ album.username}}</span>
+	</li>
+{% endfor %}
+</ul>
+{% endblock content%}

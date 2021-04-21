@@ -1,0 +1,14 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../static/reportes/generalstyles.css" />
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<h1> Reporte 6: Usuarios más activos en la plataforma </h1>
+<ul class="container">
+{% for reproduccion in historial %}
+	<li class="element">
+	El usuario <span>{{ reproduccion.username}}</span> posee un total de reproducciones de <span>{{ reproduccion.reproducciones}}</span>
+	</li>
+{% endfor %}
+</ul>
+{% endblock content%}

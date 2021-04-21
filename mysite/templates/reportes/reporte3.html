@@ -1,0 +1,17 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../static/reportes/generalstyles.css" />
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<h1> Reporte 3 : Cantidad de nuevas suscripciones mensuales durante los últimos seis meses </h1>
+
+<ul class="container">
+{% for valor in valores %}
+
+	<li class="element">
+		En la fecha <span>{{valor.0}}</span> se sucribieron la cantidad de <span>{{valor.1}}</span> personas
+
+	</li>
+{% endfor %}
+</ul>
+{% endblock content%}

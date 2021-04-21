@@ -1,0 +1,21 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="../../../static/general/styles.css" />
+</head>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>PERFIL {{user.username}}</h1>
+<hr>
+
+<h1>SUSCRITO: {{user.suscripcion.activa}}</h1>
+
+{% if user.suscripcion.activa == False %}
+<a href="{% url 'usuarios:suscripcion' %}">Suscribirme</a>
+{% endif %}
+{% if not user.atributos_extra.nombre_artistico %}
+<a href="{% url 'usuarios:artista' %}">Quiero ser Artista</a>
+{% else %}
+<h1>Nombre Artistico: {{user.atributos_extra.nombre_artistico}}</h1>
+{% endif %}
+{% endblock content%}

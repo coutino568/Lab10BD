@@ -1,0 +1,20 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../static/general/styles.css" />
+</head>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Login</h1>
+<a href="{% url 'usuarios:register_view' %}">REGISTRATE</a>
+<hr>
+<form action="" method="post">
+		<div class="form-container">
+			{% csrf_token %}
+			{{form}}
+		</div>
+	<div class="btn-container">
+		<input class="btn btn-buscar" type="submit" value="Login">
+	</div>
+</form>
+{% endblock content %}

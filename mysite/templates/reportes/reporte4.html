@@ -1,0 +1,16 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../../../static/reportes/generalstyles.css" />
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<h1> Reporte 4 : Artistas con mayor producción musical </h1>
+
+<ul class="container">
+{% for artista in historial %}
+
+	<li class="element">
+		El artista <span>{{ artista.username}}</span> ha sido producido: <span>{{ artista.canciones}}</span> canciones
+	</li>
+{% endfor %}
+</ul>
+{% endblock content%}

@@ -1,0 +1,28 @@
+h1 { color: #000; font-size: 24px; font-weight: 800; line-height: 40px; text-transform: uppercase; }
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  list-style: none;
+  width:40%;
+}
+
+
+.element {
+  color: black;
+  padding: 20px 10px;
+  border: 2px solid black;
+}
+
+.element:hover {
+  background: rgba(201, 76, 76, 0.3);
+}
+
+
+span {
+  text-decoration: underline;
+  text-transform: uppercase;
+  font-weight: bold;
+}

@@ -1,0 +1,55 @@
+<head>
+        <link rel="stylesheet" type="text/css" href="../../../static/canciones/styles.css" />
+        <title>Search</title>
+    </head>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Canciones</h1>
+<hr>
+{% if user.suscripcion.activa == False %}
+<h1>Posee: {{user.suscripcion.disponibilidad_de_reproducciones}} reproducciones restantes, para poseer reproducciones ilimitadas suscribase</h1>
+{% endif %}
+	<form>
+		<div class="form-container">
+			<label for="">NOMBRE DE LA CANCION</label>
+			<input type="text" name="nombre"><br><br>
+			<label for="">TITULO DEL ALBUM</label>
+			<input type="text" name="album"><br><br>
+			<label for="">GENERO DE LA CANCION</label>
+			<input type="text" name="genero"><br><br>
+			<label for="">ARTISTA DE LA CANCION</label>
+			<input type="text" name="artista"><br><br>
+		</div>
+		<div class="btn-container">
+			<input type="submit" class="btn btn-buscar"  value="Buscar">
+		</div>
+	</form>
+<div class="songs-container">
+	<ul>
+			{% for cancion in canciones%}
+				<li class="cancion-item">
+					<h1><span>Nombre:</span> {{cancion.nombre}}</h1>
+					<h1><span>Album:</span>  {{cancion.id_album.titulo}}</h1>
+					<h1><span>Genero:</span> {{cancion.id_album.id_genero.nombre}}</h1>
+					<h1><span>Artista:</span> {{cancion.id_album.username_usuario.atributos_extra.nombre_artistico}}</h1>
+					{% if user.suscripcion.activa or user.suscripcion.disponibilidad_de_reproducciones > 0 %}
+					<form action="" method="post">
+						{% csrf_token %}
+						<input name="cancion_id" value="{{cancion.id}}" hidden>
+						<input type="submit" class="btn"  value="Reproducir cancion">
+					</form>
+					{% endif %}
+				</li>
+			{% endfor%}
+	<ul>
+</div>
+{% if reproducir != None %}
+	{% for r in reproducir %}
+	<div class="iframe-container">
+		<iframe src={{r.link}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</div>
+	{% endfor %}
+{% endif %}
+{% endblock content%}
